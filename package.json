@@ -40,15 +40,15 @@
     "prisma": "^5.22.0",
     "@prisma/cli": "^8.0.0-rc.23",
     "tailwindcss": "^4",
-    "@tailwindcss/turbopack": "^4"
-  },
-  "devDependencies": {
+    "@tailwindcss/turbopack": "^4",
+    "typescript": "^5",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^22",
     "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react-dom": "^19"
+  },
+  "devDependencies": {
     "eslint": "^9",
-    "eslint-config-next": "16.4.2",
-    "typescript": "^5"
+    "eslint-config-next": "16.4.2"
   }
 }
