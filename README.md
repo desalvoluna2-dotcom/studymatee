@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# StudyMate AI
+
+StudyMate is a Next.js study platform with AI-generated reviewers, quizzes, flashcards, document extraction, AI tutoring, authentication, dashboards, and progress tracking.
+
+## Tech Stack
+
+- **Framework:** Next.js 16.4.2 (App Router, Turbopack)
+- **React:** 19.3.0
+- **Styling:** Tailwind CSS v4, shadcn/ui components, Radix UI primitives
+- **Database:** PostgreSQL with Prisma ORM (v5.22.0)
+- **Auth:** JWT sessions (jose) + bcryptjs password hashing
+- **AI:** Native fetch-based provider adapter with deterministic fallbacks
+- **Documents:** PDF parsing (pdf-parse), DOCX extraction (mammoth)
+- **Type Safety:** TypeScript, Zod validation schemas
+- **Charts:** Recharts
+- **Testing:** Vitest, React Testing Library, jsdom
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20+
+- PostgreSQL database
+
+### Installation
+
+```bash
+npm install
+```
+
+### Environment Setup
+
+Copy `.env.example` to `.env.local` and fill in the required values:
+
+```bash
+cp .env.example .env.local
+```
+
+Required variables:
+- `DATABASE_URL` — PostgreSQL connection string
+- `AUTH_SECRET` — Random secret for JWT session signing (min 32 chars)
+
+### Database Setup
+
+```bash
+npx prisma generate
+npx prisma migrate dev
+```
+
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start development server with Turbopack |
+| `npm run build` | Production build |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
+| `npx tsc --noEmit` | TypeScript type checking |
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+  app/              # Next.js App Router pages and API routes
+  components/       # React components (shadcn/ui + custom)
+  lib/              # Prisma client, auth, validation, AI, extraction, storage
+  types/            # TypeScript declarations
+prisma/
+  schema.prisma     # Database schema
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Key Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Authentication:** Sign up, sign in, JWT sessions, role-based access (STUDENT/TEACHER/ADMIN)
+- **Documents:** Upload PDF/DOCX/TXT, extract text, OCR support
+- **Reviewers:** AI-generated study notes, key concepts, definitions from source material
+- **Quizzes:** Multiple choice, true/false, short answer, fill-in-the-blank; attempts with scoring
+- **Flashcards:** Decks and cards with spaced repetition tracking
+- **AI Tutor:** Chat-based tutoring with optional source material grounding
+- **Planner:** Study schedule and task management
+- **Progress:** Quiz attempt analytics, average scores, flashcard/material counts
+- **Dashboards:** Student, teacher, and admin views
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The app is ready for deployment on Vercel, Node.js hosting, or Docker. Set all environment variables in your deployment platform and run `npm run build` before starting the production server.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+npm run start
+```
+
+## License
+
+MIT
