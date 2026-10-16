@@ -33,7 +33,7 @@ export default async function DashboardPage() {
 
   let stats = { courses: 0, materials: 0, quizzes: 0, flashcards: 0 };
   let recentTasks: any[] = [];
-  let upcoming: any[] = [];
+  const upcoming: any[] = [];
 
   try {
     const [courseCount, materialCount, quizCount, flashcardCount, tasks] =
